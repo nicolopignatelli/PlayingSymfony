@@ -1,0 +1,24 @@
+Coursora\CorsoBundle\Entity\Corso:
+    type: entity
+    table: corso
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        slug:
+            type: string
+            length: 255
+        titolo:
+            type: string
+            length: 255
+        descrizione:
+            type: text
+        stato:
+            type: string
+            length: 32
+#        manyToOne:
+#            docente:
+#              targetEntity: Docente
+#              inversedBy: corsi
+

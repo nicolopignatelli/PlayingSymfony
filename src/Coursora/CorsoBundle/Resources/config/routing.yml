@@ -1,0 +1,18 @@
+coursora_corso_inserisci:
+    pattern:  /corso/inserisci
+    defaults: { _controller: CoursoraCorsoBundle:Corso:inserisci }
+    methods: [POST, GET]
+
+coursora_corso_show:
+    pattern:  /corso/{slug}
+    defaults: { _controller: CoursoraCorsoBundle:Corso:show }
+
+coursora_corso_list:
+    pattern:  /corsi
+    defaults: { _controller: CoursoraCorsoBundle:Corso:list }
+
+coursora_corso_iscrizioni:
+    pattern:  /corso/{slug}/iscrizioni
+    defaults: { _controller: CoursoraCorsoBundle:Corso:iscrizioni }
+    methods: [POST, GET]
+

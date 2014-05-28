@@ -1,3 +1,7 @@
+coursora_corso:
+    resource: "@CoursoraCorsoBundle/Resources/config/routing.yml"
+    prefix:   /
+
 coursora_amministratore:
     resource: "@CoursoraAmministratoreBundle/Controller/"
     type:     annotation

@@ -1,0 +1,7 @@
+parameters:
+#    coursora_corso.example.class: Coursora\CorsoBundle\Example
+
+services:
+#    coursora_corso.example:
+#        class: %coursora_corso.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
