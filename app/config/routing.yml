@@ -1,0 +1,5 @@
+coursora_amministratore:
+    resource: "@CoursoraAmministratoreBundle/Controller/"
+    type:     annotation
+    prefix:   /amministratore
+
