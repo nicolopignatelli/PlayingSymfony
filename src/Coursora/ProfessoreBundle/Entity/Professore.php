@@ -82,6 +82,15 @@ class Professore
      */
     private $biografia;
 
+    public function getNomeCompleto()
+    {
+
+        $nomeCompleto = $this->nome . " " . $this->cognome;
+
+        return $nomeCompleto;
+
+    }
+
 
     /**
      * Get id

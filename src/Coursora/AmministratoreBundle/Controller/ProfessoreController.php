@@ -2,6 +2,7 @@
 
 namespace Coursora\AmministratoreBundle\Controller;
 
+use Coursora\ProfessoreBundle\Entity\Professore;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -46,6 +47,22 @@ class ProfessoreController extends Controller
      */
     public function listaAction()
     {
-        return array();
+        $repository = $this->getDoctrine()->getRepository("CoursoraProfessoreBundle:Professore");
+
+        $professori = $repository->findAll();
+
+        return array("professori" => $professori);
     }
+
+    /**
+     * @Route("/show/{id}")
+     * @Template()
+     * @Method({"GET"})
+     */
+    public function showAction( Professore $professore )
+    {
+
+        return array("professore" => $professore);
+    }
+
 }

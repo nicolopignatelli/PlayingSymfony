@@ -4,6 +4,19 @@
 
 {% block content %}
 
-    <h1>Lista professori</h1>
+    <h1>{{  "lista.header" | trans  }}</h1>
+
+    <ul>
+        {% for professore in professori %}
+
+            <li> <a href="{{ path("coursora_amministratore_professore_show", {id: professore.id} ) }}"> {{ professore.nomeCompleto }}</a></li>
+
+        {% endfor %}
+
+    </ul>
+
+    {% set count = professori | length %}
+
+    <div> {{ "lista.footer" | transchoice(count, {"%count%": count} )  }} </div>
 
 {% endblock %}

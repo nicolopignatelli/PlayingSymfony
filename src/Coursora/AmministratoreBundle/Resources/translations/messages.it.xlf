@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="lista.header">
+                <source>lista.header</source>
+                <target>Lista professori</target>
+            </trans-unit>
+            <trans-unit id="show.header">
+                <source>show.header</source>
+                <target> %name% è il nome del professore </target>
+            </trans-unit>
+            <trans-unit id="lista.footer">
+                <source>lista.footer</source>
+                <target>{0} non ci sono professori|{1} c'è un solo professore|]1,Inf] ci sono %count% professore</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

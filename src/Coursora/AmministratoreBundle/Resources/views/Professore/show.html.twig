@@ -1,0 +1,11 @@
+{% extends 'CoursoraAmministratoreBundle::layout.html.twig' %}
+
+{% block title %}Restra prof - {{ parent() }}{% endblock %}
+
+{% block content %}
+
+    <h1>{{ "show.header" | trans( {"%name%":professore.nomeCompleto} ) }}</h1>
+
+    <img src="{{ asset(professore.immagine) }}" />
+
+{% endblock %}

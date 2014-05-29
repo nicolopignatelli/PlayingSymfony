@@ -1,14 +1,20 @@
 coursora_professore:
     resource: "@CoursoraProfessoreBundle/Controller/"
     type:     annotation
-    prefix:   /
+    prefix:   /{_locale}
+    requirements:
+      _locale: en|it
 
 coursora_corso:
     resource: "@CoursoraCorsoBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /{_locale}
+    requirements:
+          _locale: en|it
 
 coursora_amministratore:
     resource: "@CoursoraAmministratoreBundle/Controller/"
     type:     annotation
-    prefix:   /amministratore
+    prefix:   /{_locale}/amministratore
+    requirements:
+          _locale: en|it
 
