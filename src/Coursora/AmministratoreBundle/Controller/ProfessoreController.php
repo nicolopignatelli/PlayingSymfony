@@ -20,15 +20,23 @@ class ProfessoreController extends Controller
      */
     public function registraAction(Request $request)
     {
-        if($request->getMethod() == "POST")
+        $form = $this->createForm('amministratore_professore_type');
+        $form->handleRequest($request);
+
+        if($form->isValid())
         {
+            $professore = $form->getData();
+            $dm = $this->getDoctrine()->getManager();
+            $dm->persist($professore);
+            $dm->flush();
+
             $url = $this->generateUrl('coursora_amministratore_professore_lista');
             $redirectResponse = $this->redirect($url, 303);
 
             return $redirectResponse;
         }
 
-        return array();
+        return array("il_mio_form" => $form->createView());
     }
 
     /**

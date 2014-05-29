@@ -4,10 +4,7 @@
 
 {% block content %}
     <h1>Registra professore</h1>
-    <form name="registrazione" method="post" action="{{ path("coursora_amministratore_professore_registra") }}">
-        <input type="text" name="Nome" />
 
-        <input type="submit" value="Registra" />
-    </form>
+    {{ form(il_mio_form) }}
 
 {% endblock %}
