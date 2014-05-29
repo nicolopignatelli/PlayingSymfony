@@ -19,7 +19,9 @@ class AppKernel extends Kernel
             new Coursora\AmministratoreBundle\CoursoraAmministratoreBundle(),
             new Coursora\CorsoBundle\CoursoraCorsoBundle(),
             new Coursora\ProfessoreBundle\CoursoraProfessoreBundle(),
-            new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle()
+            new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
+            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+            new Coursora\NotificationBundle\CoursoraNotificationBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

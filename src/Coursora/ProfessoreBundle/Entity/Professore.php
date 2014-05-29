@@ -2,15 +2,19 @@
 
 namespace Coursora\ProfessoreBundle\Entity;
 
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Professore
  *
  * @ORM\HasLifecycleCallbacks
  * @ORM\Table()
+ * @UniqueEntity("email")
+ * @Gedmo\TranslationEntity(class="Coursora\ProfessoreBundle\Entity\Translation\ProfessoreTranslation")
  * @ORM\Entity(repositoryClass="Coursora\ProfessoreBundle\Entity\ProfessoreRepository")
  */
 class Professore
@@ -32,7 +36,17 @@ class Professore
     }
 
 
+    /**
+     * @Gedmo\Locale
+     * Used locale to override Translation listener`s locale
+     * this is not a mapped field of entity metadata, just a simple property
+     */
+    private $locale;
 
+    public function setTranslatableLocale($locale)
+    {
+        $this->locale = $locale;
+    }
 
 
     /**

@@ -2,6 +2,8 @@
 
 namespace Coursora\AmministratoreBundle\Controller;
 
+use Coursora\AmministratoreBundle\Event\ProfessoreCreato;
+use Coursora\ProfessoreBundle\Entity\Translation\ProfessoreTranslation;
 use Coursora\ProfessoreBundle\Entity\Professore;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -31,6 +33,7 @@ class ProfessoreController extends Controller
             $dm->persist($professore);
             $dm->flush();
 
+            $this->fireProfessoreCreato($professore);
             $url = $this->generateUrl('coursora_amministratore_professore_lista');
             $redirectResponse = $this->redirect($url, 303);
 
@@ -39,6 +42,7 @@ class ProfessoreController extends Controller
 
         return array("il_mio_form" => $form->createView());
     }
+
 
     /**
      * @Route("/lista")
@@ -63,6 +67,14 @@ class ProfessoreController extends Controller
     {
 
         return array("professore" => $professore);
+    }
+
+    private function fireProfessoreCreato($professore)
+    {
+        $event = new ProfessoreCreato($professore);
+        $dispatcher = $this->get("event_dispatcher");
+        $dispatcher->dispatch("professore.creato", $event);
+
     }
 
 }
