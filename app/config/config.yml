@@ -106,3 +106,7 @@ fos_rest:
         rules:
             - priorities: [html, json, rss]
             - fallback_format: html
+fos_user:
+    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+    firewall_name: main
+    user_class: Coursora\AmministratoreBundle\Entity\User
