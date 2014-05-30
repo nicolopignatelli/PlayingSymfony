@@ -1,3 +1,3 @@
 jQuery(function(){
-   alert('ciao');
+   console.log("sono in JS");
 });

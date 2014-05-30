@@ -88,3 +88,21 @@ stof_doctrine_extensions:
     orm:
       default:
         translatable: true
+
+fos_rest:
+    routing_loader:
+        default_format: html
+    view:
+        formats:
+            rss: true
+            json: true
+        templating_formats:
+            html: true
+        force_redirects:
+            html: true
+        failed_validation: HTTP_BAD_REQUEST
+        default_engine: twig
+    format_listener:
+        rules:
+            - priorities: [html, json, rss]
+            - fallback_format: html

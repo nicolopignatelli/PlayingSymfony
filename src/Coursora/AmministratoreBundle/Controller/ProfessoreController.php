@@ -10,15 +10,26 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
+use FOS\RestBundle\Controller\Annotations\Get;
+
+use FOS\RestBundle\Util\Codes;
+
+use FOS\RestBundle\Controller\Annotations;
+use FOS\RestBundle\Controller\FOSRestController;
+use FOS\RestBundle\Request\ParamFetcherInterface;
+use FOS\RestBundle\View\RouteRedirectView;
+
+use FOS\RestBundle\View\View;
 
 /**
  * @Route("/professore")
  */
-class ProfessoreController extends Controller
+class ProfessoreController extends FOSRestController
 {
+
+
     /**
      * @Route("/registra")
-     * @Template()
      * @Method({"GET", "POST"})
      */
     public function registraAction(Request $request)
@@ -66,14 +77,19 @@ class ProfessoreController extends Controller
         return array("professori" => $professori);
     }
 
+
     /**
-     * @Route("/show/{id}")
-     * @Template()
-     * @Method({"GET"})
+     * @Get("/{id}")
+     * @Annotations\View(templateVar="professore")
      */
     public function showAction( Professore $professore )
     {
-        return array("professore" => $professore);
+        $view = $this->view($professore, 200)
+            ->setTemplate("CoursoraAmministratoreBundle:Professore:show.html.twig")
+            ->setTemplateVar('professore')
+        ;
+
+        return $this->handleView($view);
     }
 
     private function fireProfessoreCreato($professore)
