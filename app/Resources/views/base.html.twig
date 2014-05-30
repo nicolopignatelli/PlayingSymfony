@@ -3,11 +3,18 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Coursora{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}
+            <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" media="screen">
+        {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     </head>
     <body>
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+            {% include 'BraincraftedBootstrapBundle::ie8-support.html.twig' %}
+            <script src="{{ asset('js/jquery.js') }}"></script>
+            <script src="{{ asset('js/bootstrap.js') }}"></script>
+        {% endblock %}
     </body>
 </html>

@@ -33,7 +33,7 @@ class ProfessoreController extends Controller
 
             $professoreTranslation = new ProfessoreTranslation(
                 'it',
-                'biografia', 
+                'biografia',
                 'Bio Italia'
             );
             $professore->addTranslation($professoreTranslation);
