@@ -9,7 +9,7 @@ class MailerSubscriber implements EventSubscriberInterface {
 
     private $mailer;
 
-    public function __contructor($mailer){
+    public function __construct($mailer){
         $this->mailer = $mailer;
     }
 

@@ -2,6 +2,8 @@
 
 namespace Coursora\ProfessoreBundle\Entity;
 
+use Coursora\ProfessoreBundle\Entity\Translation\ProfessoreTranslation;
+use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -19,6 +21,37 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  */
 class Professore
 {
+
+    /**
+     * @ORM\OneToMany(
+     *   targetEntity="Coursora\ProfessoreBundle\Entity\Translation\ProfessoreTranslation",
+     *   mappedBy="object",
+     *   cascade={"persist", "remove"}
+     * )
+     */
+    private $translations;
+
+    public function __construct()
+    {
+        $this->translations = new ArrayCollection();
+    }
+
+    public function getTranslations()
+    {
+        return $this->translations;
+    }
+
+    public function addTranslation(ProfessoreTranslation $pt)
+    {
+        if (!$this->translations->contains($pt)) {
+            $this->translations[] = $pt;
+            $pt->setObject($this); // qui si crea la relazioene vera e propria !!!
+        }
+    }
+
+
+
+
     /**
      * @ORM\PrePersist
      * @ORM\PreUpdate
@@ -36,17 +69,6 @@ class Professore
     }
 
 
-    /**
-     * @Gedmo\Locale
-     * Used locale to override Translation listener`s locale
-     * this is not a mapped field of entity metadata, just a simple property
-     */
-    private $locale;
-
-    public function setTranslatableLocale($locale)
-    {
-        $this->locale = $locale;
-    }
 
 
     /**
@@ -91,7 +113,7 @@ class Professore
 
     /**
      * @var string
-     *
+     * @Gedmo\Translatable
      * @ORM\Column(name="biografia", type="text", nullable=true)
      */
     private $biografia;

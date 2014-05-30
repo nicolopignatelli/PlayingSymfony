@@ -2,33 +2,38 @@
 namespace Coursora\ProfessoreBundle\Entity\Translation;
 
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Translatable\Entity\MappedSuperclass\AbstractTranslation;
+use Gedmo\Translatable\Entity\MappedSuperclass\AbstractPersonalTranslation;
+
 
 /**
- * @ORM\Table(name="professore_translations", indexes={
- *      @ORM\Index(name="professore_translation_idx", columns={"locale", "object_class", "field", "foreign_key"})
- * })
- * @ORM\Entity(repositoryClass="Gedmo\Translatable\Entity\Repository\TranslationRepository")
+ * @ORM\Entity
+ * @ORM\Table(name="professore_translations",
+ *     uniqueConstraints={@ORM\UniqueConstraint(name="lookup_unique_idx", columns={
+ *         "locale", "object_id", "field"
+ *     })}
+ * )
  */
-class ProfessoreTranslation extends AbstractTranslation
+class ProfessoreTranslation extends AbstractPersonalTranslation
 {
-    private $biografia;
-
     /**
-     * @return mixed
+     * Convenient constructor
+     *
+     * @param string $locale
+     * @param string $field
+     * @param string $value
      */
-    public function getBiografia()
+    public function __construct($locale, $field, $value)
     {
-        return $this->biografia;
+        $this->setLocale($locale);
+        $this->setField($field);
+        $this->setContent($value);
     }
 
     /**
-     * @param mixed $biografia
+     * @ORM\ManyToOne(targetEntity="Coursora\ProfessoreBundle\Entity\Professore", inversedBy="translations")
+     * @ORM\JoinColumn(name="object_id", referencedColumnName="id", onDelete="CASCADE")
      */
-    public function setBiografia($biografia)
-    {
-        $this->biografia = $biografia;
-    }
+    protected $object;
 
 
 }

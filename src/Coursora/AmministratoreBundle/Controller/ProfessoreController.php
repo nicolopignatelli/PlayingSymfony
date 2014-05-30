@@ -30,6 +30,14 @@ class ProfessoreController extends Controller
         {
             $professore = $form->getData();
             $dm = $this->getDoctrine()->getManager();
+
+            $professoreTranslation = new ProfessoreTranslation(
+                'it',
+                'biografia', 
+                'Bio Italia'
+            );
+            $professore->addTranslation($professoreTranslation);
+
             $dm->persist($professore);
             $dm->flush();
 
@@ -65,7 +73,6 @@ class ProfessoreController extends Controller
      */
     public function showAction( Professore $professore )
     {
-
         return array("professore" => $professore);
     }
 
